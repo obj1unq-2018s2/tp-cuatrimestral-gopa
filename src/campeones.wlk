@@ -3,8 +3,9 @@ import items.*
 class Campeon{
 	
 	const property puntosDeVida
-	var property vidaTotal	
-	var property ataque		
+	var property vidaTotal 
+	const property ataque
+	var property ataqueTotal 		
 	var property puntosDeDanio = 0
 	var property bloqueo 	
 	var property items	
