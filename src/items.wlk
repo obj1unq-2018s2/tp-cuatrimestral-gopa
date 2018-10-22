@@ -6,7 +6,7 @@ class AnilloDeDoran {
 	var at =15
 	
 	method aportarPh(campeon){
-			campeon.puntosDeVida(campeon.puntosDeVIda() + ph )
+			campeon.vidaTotal(campeon.vidaTotal() + ph )
 	}
 	
 	method aportarAt(campeon){
@@ -20,7 +20,7 @@ class AnilloDeDoran {
 			campeon.puntosDeDanio(campeon.puntosDeDanio() - 5)
 		}
 		else {
-			campeon.puntosDeVida(campeon.puntosDeVida() + 10)
+			campeon.vidaTotal(campeon.vidaTotal() + 10)
 		}
 	}
 	
@@ -33,7 +33,7 @@ class TomoAmplificador{
 	
 	method aportarPh(campeon){
 		ph = 2.5 * campeon.puntosDeDanio() 
-		campeon.puntosDeVida(campeon.puntosDeVIda() + ph )
+		campeon.vidaTotal(campeon.vidaTotal() + ph )
 	}
 	
 	method aportarAt(campeon){
@@ -48,7 +48,7 @@ class TomoAmplificador{
 			campeon.bloqueo( campeon.bloqueo() + 2 )
 		}
 		else {
-			campeon.puntosDeVida(campeon.puntosDeVida() - 30)
+			campeon.vidaTotal(campeon.vidaTotal() - 30)
 			campeon.bloqueo( campeon.bloqueo() + 1 )
 		}
 	}
@@ -57,6 +57,25 @@ class TomoAmplificador{
 
 class SombreroDebadon inherits TomoAmplificador{
 	
+	override method aportarPh(campeon){
+		super(campeon) 
+		campeon.vidaTotal( campeon.vidaTotal() + 5 )
+	}
+	
+	override method aportarAt(campeon){
+		campeon.ataque( campeon.ataque() + campeon.ataque() * 2 )
+	}
+	
+	
+	override method darEfecto(campeon){
+		if( campeon.items().contains(self) ){
+			self.aportarPh(campeon)
+			self.aportarAt(campeon)
+			campeon.bloqueo( campeon.bloqueo() + 2 )
+			campeon.puntosDeDanio( campeon.puntosDeDanio() + 5 )
+		}
+		
+	}
 }
 
 
