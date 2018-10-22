@@ -2,13 +2,14 @@ import items.*
 
 class Campeon{
 	
-	var property puntosDeVida	
+	const property puntosDeVida
+	var property vidaTotal	
 	var property ataque		
 	var property puntosDeDanio = 0
 	var property bloqueo 	
 	var property items	
 	
-	method estaMuerto() = puntosDeVida <= puntosDeDanio
+	method estaMuerto() = vidaTotal <= puntosDeDanio
 	method equiparItem(item){
 		items.add{item}
 		item.darEfecto(self)
