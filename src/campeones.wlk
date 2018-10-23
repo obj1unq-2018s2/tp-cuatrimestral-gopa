@@ -3,8 +3,14 @@ import items.*
 class Campeon{
 	
 	const property puntosDeVida
+<<<<<<< HEAD
 	var property vidaTotal	
 	var property ataque		
+=======
+	var property vidaTotal 
+	const property ataque
+	var property ataqueTotal 		
+>>>>>>> branch 'master' of https://github.com/obj1unq-2018s2/tp-cuatrimestral-gopa.git
 	var property puntosDeDanio = 0
 	var property bloqueo 	
 	var property items	

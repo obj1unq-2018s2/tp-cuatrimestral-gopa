@@ -10,7 +10,7 @@ class AnilloDeDoran {
 	}
 	
 	method aportarAt(campeon){
-			campeon.ataque( campeon.ataque() + at ) 
+			campeon.ataqueTotal( campeon.ataqueTotal() + at ) 
 	}
 	
 	method darEfecto(campeon){
@@ -38,7 +38,7 @@ class TomoAmplificador{
 	
 	method aportarAt(campeon){
 		at= 0.5 * campeon.puntosDeDanio()
-		campeon.ataque( campeon.ataque() + at )
+		campeon.ataqueTotal( campeon.ataqueTotal() + at )
 	}
 	
 	method darEfecto(campeon){
@@ -63,7 +63,7 @@ class SombreroDebadon inherits TomoAmplificador{
 	}
 	
 	override method aportarAt(campeon){
-		campeon.ataque( campeon.ataque() + campeon.ataque() * 2 )
+		campeon.ataqueTotal( campeon.ataqueTotal() + campeon.ataqueTotal() * 2 )
 	}
 	
 	
