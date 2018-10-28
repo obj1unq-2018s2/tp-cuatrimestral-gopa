@@ -2,25 +2,26 @@ import campeones.*
 
 class AnilloDeDoran {
 	
-	var ph =60 
-	var at =15
+	
 	
 	method aportarPh(campeon){
-			campeon.vidaTotal(campeon.vidaTotal() + ph )
+			campeon.vidaTotal( campeon.vidaTotal() + 60 ) 
 	}
 	
 	method aportarAt(campeon){
-			campeon.ataqueTotal( campeon.ataqueTotal() + at ) 
+			campeon.ataqueTotal( campeon.ataqueTotal() + 15) 
 	}
 	
 	method darEfecto(campeon){
 		if( campeon.items().contains(self) ){
 			self.aportarPh(campeon)
 			self.aportarAt(campeon)
-			campeon.puntosDeDanio(campeon.puntosDeDanio() - 5)
+			campeon.puntosDeDanio(campeon.puntosDeDanio() + 5)
 		}
 		else {
-			campeon.vidaTotal(campeon.vidaTotal() + 10)
+			campeon.puntosDeDanio(campeon.puntosDeDanio() - 10)
+			campeon.vidaTotal( campeon.vidaTotal() - 60 )
+			campeon.ataqueTotal( campeon.ataqueTotal() - 15) 
 		}
 	}
 	
@@ -32,12 +33,12 @@ class TomoAmplificador{
 	var at
 	
 	method aportarPh(campeon){
-		ph = 2.5 * campeon.puntosDeDanio() 
+		ph = 0.25 * campeon.puntosDeDanio() 
 		campeon.vidaTotal(campeon.vidaTotal() + ph )
 	}
 	
 	method aportarAt(campeon){
-		at= 0.5 * campeon.puntosDeDanio()
+		at= 0.05 * campeon.puntosDeDanio()
 		campeon.ataqueTotal( campeon.ataqueTotal() + at )
 	}
 	
@@ -50,6 +51,8 @@ class TomoAmplificador{
 		else {
 			campeon.vidaTotal(campeon.vidaTotal() - 30)
 			campeon.bloqueo( campeon.bloqueo() + 1 )
+			campeon.vidaTotal(campeon.vidaTotal() - ph )
+			campeon.ataqueTotal( campeon.ataqueTotal() - at )
 		}
 	}
 		

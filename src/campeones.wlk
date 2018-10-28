@@ -6,7 +6,7 @@ class Campeon{
 	var property vidaTotal 
 	var property ataque
 	var property ataqueTotal 		
-	var property puntosDeDanio = 0
+	var property puntosDeDanio 
 	var property bloqueo 	
 	var property items	
 	
@@ -21,13 +21,15 @@ class Campeon{
 		items = _items		
 	}
 */	
+
+	
 	method estaMuerto() = vidaTotal <= puntosDeDanio
 	method equiparItem(item){
-		items.add{item}
+		items.add(item)
 		item.darEfecto(self)
 	}
 	method desequiparItem(item){
-		items.remove{item}
+		items.remove(item)
 		item.darEfecto(self)
 	}
 	method atacar(alguien){
