@@ -49,8 +49,9 @@ class TomoAmplificador{
 			campeon.bloqueo( campeon.bloqueo() + 2 )
 		}
 		else {
-			campeon.vidaTotal(campeon.vidaTotal() - 30)
+//			campeon.vidaTotal(campeon.vidaTotal() - 30)
 			campeon.bloqueo( campeon.bloqueo() + 1 )
+			campeon.puntosDeDanio(campeon.puntosDeDanio() + 30)
 			campeon.vidaTotal(campeon.vidaTotal() - ph )
 			campeon.ataqueTotal( campeon.ataqueTotal() - at )
 		}

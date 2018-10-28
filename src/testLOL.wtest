@@ -23,30 +23,39 @@ describe "test de liga de leyendas"{
 	)
 	
 	
-	test "campeon muere gg"{
+	test "campeon muere"{
 		assert.equals(50, campeon1.vidaTotal())
 		assert.equals(15, campeon1.ataqueTotal() )
+		
 		campeon1.equiparItem(anilloDeDoran)
-		
-		//assert.equals([anilloDeDoran], campeon1.items())
-		
+		assert.equals([anilloDeDoran], campeon1.items())	
 		assert.equals(5, campeon1.puntosDeDanio())
 		assert.equals(110, campeon1.vidaTotal())
 		assert.equals(30, campeon1.ataqueTotal() )
-		
+	
+			
 		campeon1.equiparItem(tomoAmplificador)
+		assert.equals([anilloDeDoran, tomoAmplificador],campeon1.items())
+		assert.equals(5, campeon1.puntosDeDanio())
 		assert.equals(111.25, campeon1.vidaTotal())
 		assert.equals(30.25, campeon1.ataqueTotal())
 		assert.equals(2, campeon1.bloqueo())
-		
-		campeon1.ataque(oleada1)
-		campeon1.ataque(oleada1)
-		campeon1.ataque(oleada1)
-		
+	
+		campeon1.atacar(oleada1)
+		campeon1.atacar(oleada1)
+		campeon1.atacar(oleada1)
+		assert.equals(0,campeon1.bloqueo())
+		assert.equals(30, campeon1.puntosDeDanio())
 		
 		campeon1.desequiparItem(tomoAmplificador)
+		assert.equals([anilloDeDoran], campeon1.items())
+		assert.equals(1, campeon1.bloqueo())
+		assert.equals(60,campeon1.puntosDeDanio())
+			
 		campeon1.desequiparItem(anilloDeDoran)
-		
+		assert.equals([],campeon1.items())
+		assert.equals(50,campeon1.vidaTotal())
+		assert.equals(50,campeon1.puntosDeDanio())
 		
 		assert.that( campeon1.estaMuerto() )
 		

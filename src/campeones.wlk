@@ -10,20 +10,8 @@ class Campeon{
 	var property bloqueo 	
 	var property items	
 	
-/*	constructor(_puntosDeVida, _vidaTotal, _ataque,
-		_ataqueTotal, _puntosDeDanio, _bloqueo, _items){
-		puntosDeVida = _puntosDeVida
-		vidaTotal = _vidaTotal
-		ataque = _ataque
-		ataqueTotal = _ataqueTotal	
-		puntosDeDanio = _puntosDeDanio
-		bloqueo = _bloqueo
-		items = _items		
-	}
-*/	
-
-	
 	method estaMuerto() = vidaTotal <= puntosDeDanio
+	
 	method equiparItem(item){
 		items.add(item)
 		item.darEfecto(self)
@@ -33,9 +21,9 @@ class Campeon{
 		item.darEfecto(self)
 	}
 	method atacar(alguien){
-		if(bloqueo >0){
-			alguien.cantMinions(alguien.cantMinions() - ataqueTotal.max(0))		//revisar si funciona
-			bloqueo -= 1.max(0)
+		if(bloqueo > 0){
+			alguien.cantMinions(alguien.cantMinions() - ataqueTotal)		
+			bloqueo -= 1
 		}else{
 			alguien.cantMinions(alguien.cantMinions() - ataqueTotal)
 			alguien.defenderse(self)
@@ -48,9 +36,15 @@ class OleadaMinion{
 	var property plusDeAtaque
 	var property cantMinions	
 	
-	method ataqueTotal() = plusDeAtaque + cantMinions
+	method ataqueTotal(){
+		if(cantMinions >= 0){
+			return plusDeAtaque + cantMinions
+		}else{
+			return plusDeAtaque
+		}
+	} 
 	method defenderse(campeon){
 		campeon.puntosDeDanio(campeon.puntosDeDanio() + self.ataqueTotal())
 	}
-	method estaMuerto() = cantMinions == 0
+	method estaMuerto() = cantMinions <= 0
 }
