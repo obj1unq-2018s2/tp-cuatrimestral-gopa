@@ -21,14 +21,7 @@ describe "test de liga de leyendas"{
 		plusDeAtaque = 25,
 		cantMinions = 10
 	)
-	const oleada2 = new OleadaMinion(
-		plusDeAtaque = 25,
-		cantMinions = 10
-	)
-	const oleada3 = new OleadaMinion(
-		plusDeAtaque = 25,
-		cantMinions = 10
-	)
+	
 	
 	test "campeon muere gg"{
 		assert.equals(50, campeon1.vidaTotal())
@@ -47,12 +40,15 @@ describe "test de liga de leyendas"{
 		assert.equals(2, campeon1.bloqueo())
 		
 		campeon1.ataque(oleada1)
-		campeon1.ataque(oleada2)
-		campeon1.ataque(oleada3)
+		campeon1.ataque(oleada1)
+		campeon1.ataque(oleada1)
 		
-		campeon1.desequiparItem(anilloDeDoran)
+		
 		campeon1.desequiparItem(tomoAmplificador)
+		campeon1.desequiparItem(anilloDeDoran)
+		
 		
 		assert.that( campeon1.estaMuerto() )
+		
 	}
 }
