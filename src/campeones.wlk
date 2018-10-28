@@ -2,14 +2,25 @@ import items.*
 
 class Campeon{
 	
-	const property puntosDeVida
+	var property puntosDeVida
 	var property vidaTotal 
-	const property ataque
+	var property ataque
 	var property ataqueTotal 		
 	var property puntosDeDanio = 0
 	var property bloqueo 	
 	var property items	
 	
+/*	constructor(_puntosDeVida, _vidaTotal, _ataque,
+		_ataqueTotal, _puntosDeDanio, _bloqueo, _items){
+		puntosDeVida = _puntosDeVida
+		vidaTotal = _vidaTotal
+		ataque = _ataque
+		ataqueTotal = _ataqueTotal	
+		puntosDeDanio = _puntosDeDanio
+		bloqueo = _bloqueo
+		items = _items		
+	}
+*/	
 	method estaMuerto() = vidaTotal <= puntosDeDanio
 	method equiparItem(item){
 		items.add{item}
@@ -21,10 +32,10 @@ class Campeon{
 	}
 	method atacar(alguien){
 		if(bloqueo >0){
-			alguien.cantMinions(alguien.cantMinions() - ataque.max(0))		//revisar si funciona
+			alguien.cantMinions(alguien.cantMinions() - ataqueTotal.max(0))		//revisar si funciona
 			bloqueo -= 1.max(0)
 		}else{
-			alguien.cantMinions(alguien.cantMinions() - ataque)
+			alguien.cantMinions(alguien.cantMinions() - ataqueTotal)
 			alguien.defenderse(self)
 		}
 	}

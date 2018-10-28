@@ -1,0 +1,24 @@
+import campeones.*
+import items.*
+
+describe "test de liga de leyendas"{
+	
+	var campeon1 = new Campeon(
+		puntosDeVida = 50,
+		vidaTotal = 50,
+		ataque = 15,
+		ataqueTotal = 15,
+		bloqueo = 0,
+		items = []
+	)
+	
+	const oleada1 = new OleadaMinion(
+		plusDeAtaque = 5,
+		cantMinions = 10
+	)
+	
+	test "campeon tiene 50 puntos de vida y 15 de ataque"{
+		assert.equals(50, campeon1.puntosDeVida())
+		assert.equals(15, campeon1.ataque())
+	}
+}
