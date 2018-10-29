@@ -8,10 +8,10 @@ class AnilloDeDoran {
 	
 	method puntosDeDanioQueOtorga(campeon) = 5
 	
-	method bloqueosQueOtorga(campeon){}
+	method bloqueosQueOtorga(campeon) = 0
 	
 	method efectoNegativo(campeon){
-		campeon.puntosDeDanioTotal( campeon.puntosDeDanioTotal() - 10 )
+		campeon.puntosDeDanio(campeon.puntosDeDanio() - 10)
 	}
 	
 }
@@ -22,22 +22,22 @@ class TomoAmplificador{
 	var ataque
 	
 	method puntosDeVidaQueOtorga(campeon){
-		puntosDeVida = 0.25 * campeon.puntoDeDanio() 
+		puntosDeVida = 0.25 * campeon.puntosDeDanioTotal() 
 		return puntosDeVida
 	}
 	
 	method puntosDeAtaqueQueOtorga(campeon){
-		ataque= 0.05 * campeon.puntosDeDanio()
+		ataque= 0.05 * campeon.puntosDeDanioTotal()
 		return ataque
 	}
 	
 	method puntosDeDanioQueOtorga(campeon)=0
 	
-	method bloqueosQueOtorga(campeon){campeon.bloqueo(campeon.bloqueo() + 2 )}
+	method bloqueosQueOtorga(campeon) = 2
 	
 	method efectoNegativo(campeon){
 		campeon.bloqueo( campeon.bloqueo() + 1 )
-		campeon.puntosDeDanioTotal( campeon.puntosDeDanioTotal() + 30 )
+		campeon.puntosDeDanio(campeon.puntosDeDanio() + 30)
 	}
 		
 }
@@ -54,6 +54,7 @@ class SombreroDebadon inherits TomoAmplificador{
 	}
 	
 	override method puntosDeDanioQueOtorga(campeon)= 5
+	override method bloqueosQueOtorga(campeon) = 0
 	
 	override method efectoNegativo(campeon){}
 }

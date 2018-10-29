@@ -28,7 +28,7 @@ describe "test de liga de leyendas"{
 	test "equipa anillo de doran"{
 		campeon1.equiparItem(anilloDeDoran)
 		assert.equals([anilloDeDoran], campeon1.items())	
-		assert.equals(5, campeon1.puntosDeDanio())
+		assert.equals(5, campeon1.puntosDeDanioTotal())
 		assert.equals(110, campeon1.vidaTotal())
 		assert.equals(30, campeon1.ataqueTotal() )
 	
@@ -37,41 +37,48 @@ describe "test de liga de leyendas"{
 		campeon1.equiparItem(anilloDeDoran)
 		campeon1.equiparItem(tomoAmplificador)
 		assert.equals([anilloDeDoran, tomoAmplificador],campeon1.items())
-		assert.equals(5, campeon1.puntosDeDanio())
+		assert.equals(5, campeon1.puntosDeDanioTotal())
 		assert.equals(111.25, campeon1.vidaTotal())
 		assert.equals(30.25, campeon1.ataqueTotal())
-		assert.equals(2, campeon1.bloqueo())
+		assert.equals(2, campeon1.bloqueoTotal())
 	
 	}
 	test "campeon ataca a una oleada de minions"{
 		campeon1.bloqueo(1)
 		campeon1.atacar(oleada1)
-		assert.equals(0, campeon1.bloque())
-		assert.that(oleada1.estaMuerto())
+		assert.equals(0, campeon1.bloqueo())
+		campeon1.atacar(oleada1)
+		campeon1.atacar(oleada1)
+		assert.equals(50, campeon1.puntosDeDanioTotal())
+		
 	}
-	
-	test "campeon muere"{
-		
+	test " campeon se desequipa el tomo amplificador"{
 		campeon1.equiparItem(anilloDeDoran)
-			
 		campeon1.equiparItem(tomoAmplificador)
-		
-		campeon1.atacar(oleada1)
-		campeon1.atacar(oleada1)
-		campeon1.atacar(oleada1)
-		assert.equals(0,campeon1.bloqueo())
-		assert.equals(30, campeon1.puntosDeDanio())
-		
 		campeon1.desequiparItem(tomoAmplificador)
 		assert.equals([anilloDeDoran], campeon1.items())
 		assert.equals(1, campeon1.bloqueo())
-		assert.equals(60,campeon1.puntosDeDanio())
-			
+		assert.equals(35,campeon1.puntosDeDanioTotal())
+	}
+	test "campeon se desequipa el tomo amplificador y el anillo de doran"{
+		campeon1.equiparItem(anilloDeDoran)
+		campeon1.equiparItem(tomoAmplificador)
+		campeon1.desequiparItem(tomoAmplificador)		
 		campeon1.desequiparItem(anilloDeDoran)
 		assert.equals([],campeon1.items())
 		assert.equals(50,campeon1.vidaTotal())
-		assert.equals(50,campeon1.puntosDeDanio())
+		assert.equals(20,campeon1.puntosDeDanioTotal())
+	}
+	
+	test "campeon muere (test pedido)"{
 		
+		campeon1.equiparItem(anilloDeDoran)
+		campeon1.equiparItem(tomoAmplificador)
+		campeon1.atacar(oleada1)
+		campeon1.atacar(oleada1)
+		campeon1.atacar(oleada1)
+		campeon1.desequiparItem(tomoAmplificador)
+		campeon1.desequiparItem(anilloDeDoran)		
 		assert.that( campeon1.estaMuerto() )
 		
 	}
