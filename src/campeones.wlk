@@ -2,24 +2,29 @@ import items.*
 
 class Campeon{
 	
-	var property puntosDeVida
-	var property vidaTotal 
+	const property puntosDeVida
 	var property ataque
 	var property ataqueTotal 		
 	var property puntosDeDanio 
 	var property bloqueo 	
-	var property items	
+	var property items = []	
 	
-	method estaMuerto() = vidaTotal <= puntosDeDanio
+	method vidaTotal() = puntosDeVida + items.sum { 
+		item => item.puntosDeVidaQueOtorga()
+	}
+	
+	method estaMuerto() = self.vidaTotal() <= puntosDeDanio
 	
 	method equiparItem(item){
 		items.add(item)
 		item.darEfecto(self)
 	}
+
 	method desequiparItem(item){
 		items.remove(item)
 		item.darEfecto(self)
 	}
+
 	method atacar(alguien){
 		if(bloqueo > 0){
 			alguien.cantMinions(alguien.cantMinions() - ataqueTotal)		

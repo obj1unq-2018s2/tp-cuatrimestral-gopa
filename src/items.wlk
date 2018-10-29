@@ -2,11 +2,7 @@ import campeones.*
 
 class AnilloDeDoran {
 	
-	
-	
-	method aportarPh(campeon){
-			campeon.vidaTotal( campeon.vidaTotal() + 60 ) 
-	}
+	method puntosDeVidaQueOtorga() = 60 	
 	
 	method aportarAt(campeon){
 			campeon.ataqueTotal( campeon.ataqueTotal() + 15) 
@@ -14,13 +10,11 @@ class AnilloDeDoran {
 	
 	method darEfecto(campeon){
 		if( campeon.items().contains(self) ){
-			self.aportarPh(campeon)
 			self.aportarAt(campeon)
 			campeon.puntosDeDanio(campeon.puntosDeDanio() + 5)
 		}
 		else {
 			campeon.puntosDeDanio(campeon.puntosDeDanio() - 10)
-			campeon.vidaTotal( campeon.vidaTotal() - 60 )
 			campeon.ataqueTotal( campeon.ataqueTotal() - 15) 
 		}
 	}

@@ -9,12 +9,10 @@ describe "test de liga de leyendas"{
 	
 	var campeon1 = new Campeon(
 		puntosDeVida = 50,
-		vidaTotal = 50,
 		ataque = 15,
 		ataqueTotal = 15,
 		bloqueo = 0,
-		puntosDeDanio= 0,
-		items = []
+		puntosDeDanio= 0 
 	)
 	
 	const oleada1 = new OleadaMinion(
@@ -22,7 +20,11 @@ describe "test de liga de leyendas"{
 		cantMinions = 10
 	)
 	
-	
+	test "estado inicial del campeón"{
+		assert.equals(50, campeon1.vidaTotal())
+		assert.equals(15, campeon1.ataqueTotal() )
+	}
+
 	test "campeon muere"{
 		assert.equals(50, campeon1.vidaTotal())
 		assert.equals(15, campeon1.ataqueTotal() )
