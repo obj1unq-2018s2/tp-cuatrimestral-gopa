@@ -9,10 +9,7 @@ describe "test de liga de leyendas"{
 	
 	var campeon1 = new Campeon(
 		puntosDeVida = 50,
-		ataque = 15,
-		ataqueTotal = 15,
-		bloqueo = 0,
-		puntosDeDanio= 0 
+		ataque = 15 
 	)
 	
 	const oleada1 = new OleadaMinion(
@@ -24,18 +21,20 @@ describe "test de liga de leyendas"{
 		assert.equals(50, campeon1.vidaTotal())
 		assert.equals(15, campeon1.ataqueTotal() )
 	}
-
-	test "campeon muere"{
-		assert.equals(50, campeon1.vidaTotal())
-		assert.equals(15, campeon1.ataqueTotal() )
-		
+	test "estado inicial Oleada de minions"{
+		assert.equals(25, oleada1.plusDeAtaque())
+		assert.equals(10, oleada1.cantMinions())
+	}
+	test "equipa anillo de doran"{
 		campeon1.equiparItem(anilloDeDoran)
 		assert.equals([anilloDeDoran], campeon1.items())	
 		assert.equals(5, campeon1.puntosDeDanio())
 		assert.equals(110, campeon1.vidaTotal())
 		assert.equals(30, campeon1.ataqueTotal() )
 	
-			
+	}
+	test "equipa anillo de doran y tomo amplificador"{
+		campeon1.equiparItem(anilloDeDoran)
 		campeon1.equiparItem(tomoAmplificador)
 		assert.equals([anilloDeDoran, tomoAmplificador],campeon1.items())
 		assert.equals(5, campeon1.puntosDeDanio())
@@ -43,6 +42,20 @@ describe "test de liga de leyendas"{
 		assert.equals(30.25, campeon1.ataqueTotal())
 		assert.equals(2, campeon1.bloqueo())
 	
+	}
+	test "campeon ataca a una oleada de minions"{
+		campeon1.bloqueo(1)
+		campeon1.atacar(oleada1)
+		assert.equals(0, campeon1.bloque())
+		assert.that(oleada1.estaMuerto())
+	}
+	
+	test "campeon muere"{
+		
+		campeon1.equiparItem(anilloDeDoran)
+			
+		campeon1.equiparItem(tomoAmplificador)
+		
 		campeon1.atacar(oleada1)
 		campeon1.atacar(oleada1)
 		campeon1.atacar(oleada1)
