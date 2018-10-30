@@ -86,12 +86,48 @@ class PocionDeVida{
 	method habilidadActivable(campeon){
 
 		if(habilidadActiva and uso > 0){
-			campeon.puntosDeDanio((campeon.puntosDeDanio() - 50).max(0))
+			campeon.puntosDeDanio((campeon.puntosDeDanioTotal() - 50).max(0))
 			uso -= 1
 		}
 	}
 }
+
+class BastonDelVacio{
 	
+	var property habilidadActiva = false
+	
+	var property materiales=[]
+	
+	method agregarMaterial(material){
+		materiales.add(material)
+	}
+	
+	method precio()=0 
+	
+	method puntosDeVidaQueOtorga(campeon){
+		return materiales.sum({ material=> material.puntosDeVidaQueOtorga(campeon) / 2 })
+	}
+	
+	method puntosDeAtaqueQueOtorga(campeon){
+		return materiales.map({ material=> material.puntosDeAtaqueQueOtorga(campeon) }).sum()
+	} 
+	
+	method puntosDeDanioQueOtorga(campeon) = 0
+	method bloqueosQueOtorga(campeon) = 0
+	method efectoNegativo(campeon){}
+	
+	method habilidadActivable(campeon){
+		if( habilidadActiva ){
+			materiales.forEach({ material=> campeon.activarHabilidad(material) })
+		}
+	}
+	
+}
+
+
+
+
+
 
 
 
