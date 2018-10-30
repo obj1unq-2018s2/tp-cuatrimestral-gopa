@@ -31,13 +31,13 @@ class Campeon{
 		items.remove(item)
 		item.efectoNegativo(self)
 	}
-
+	
 	method atacar(alguien){
 		if(bloqueo > 0){
-//			alguien.cantMinions(alguien.cantMinions() - self.ataqueTotal())		
-			bloqueo = bloqueo - 1.max(0)
+			alguien.cantMinions((alguien.cantMinions() - self.ataqueTotal()).max(0))
+			bloqueo = (bloqueo - 1).max(0)
 		}else{
-			alguien.cantMinions(alguien.cantMinions() - self.ataqueTotal())
+			alguien.cantMinions((alguien.cantMinions() - self.ataqueTotal()).max(0))
 			alguien.defenderse(self)
 		}
 	}
@@ -55,8 +55,9 @@ class OleadaMinion{
 			return plusDeAtaque
 		}
 	} 
+
 	method defenderse(campeon){
 		campeon.puntosDeDanio(campeon.puntosDeDanio() + self.ataqueTotal())
 	}
-	method estaMuerto() = cantMinions <= 0
+	method estaMuerto() = cantMinions == 0
 }

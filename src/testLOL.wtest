@@ -49,6 +49,7 @@ describe "test de liga de leyendas"{
 		assert.equals(0, campeon1.bloqueo())
 		campeon1.atacar(oleada1)
 		campeon1.atacar(oleada1)
+		assert.equals(0,oleada1.cantMinions())
 		assert.equals(50, campeon1.puntosDeDanioTotal())
 		
 	}
