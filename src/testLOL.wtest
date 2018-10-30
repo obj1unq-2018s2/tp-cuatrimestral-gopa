@@ -101,7 +101,9 @@ describe "test de liga de leyendas"{
 		campeon1.puntosDeDanio(150)
 		campeon1.equiparItem(pocionDeVida)
 		campeon1.activarHabilidad(pocionDeVida)
+		assert.equals(100,campeon1.puntosDeDanioTotal())
 		campeon1.activarHabilidad(pocionDeVida)
+		
 		campeon1.activarHabilidad(pocionDeVida)
 		assert.equals(50, campeon1.puntosDeDanioTotal())
 		

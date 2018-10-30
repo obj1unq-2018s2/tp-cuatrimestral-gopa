@@ -85,8 +85,11 @@ class PocionDeVida{
 	
 	method habilidadActivable(campeon){
 //REVISAR XQUE NO FUNCIONA
-		if(habilidadActiva and uso > 0){
+		if(habilidadActiva and uso == 2){
 			campeon.puntosDeDanioQueCura(50)
+			uso -= 1
+		}else{if(habilidadActiva and uso ==1)
+			campeon.puntosDeDanioQueCura(100)
 			uso -= 1
 		}
 	}
