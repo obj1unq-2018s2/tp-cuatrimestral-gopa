@@ -17,6 +17,11 @@ describe "test de liga de leyendas"{
 		ataque = 15,
 		dinero = 800
 	)
+	var campeon2 = new Campeon(
+		puntosDeVida = 50,
+		ataque = 20,
+		dinero = 300
+	)
 	
 	var bastonDelVacio= new BastonDelVacio(
 		materiales=[tomoAmplificador,pocionDeVida]
@@ -25,6 +30,17 @@ describe "test de liga de leyendas"{
 	const oleada1 = new OleadaMinion(
 		plusDeAtaque = 25,
 		cantMinions = 10
+	)
+	const oleada2 = new OleadaMinion(
+		plusDeAtaque = 5,
+		cantMinions = 20
+	)
+	const oleada3 = new OleadaMinion(
+		plusDeAtaque = 15,
+		cantMinions = 10
+	)
+	const ejercito = new EjercitoDeMinions(
+		oleadas = [oleada2, oleada3]
 	)
 	
 	test "estado inicial del campeón"{
@@ -115,6 +131,12 @@ describe "test de liga de leyendas"{
 		assert.that( bastonDelVacio.materiales().get(1).uso() == 1 )
 		assert.equals(0, campeon1.puntosDeDanio() )
 		
+	}
+	test "ejercito de minions (test pedido)"{
+		campeon2.atacar(ejercito)
+		assert.that(campeon2.estaMuerto())
+		assert.that(ejercito.todosMuertos())
+		assert.equals(330, campeon2.dinero())
 	}
 }
 

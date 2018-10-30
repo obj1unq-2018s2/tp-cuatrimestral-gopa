@@ -5,9 +5,10 @@ class Campeon{
 	const property puntosDeVida
 	const property ataque
 	var property puntosDeDanio = 0
-	var property bloqueo = 0
 	var property items = []	
+	var property bloqueo = 0
 	var property dinero = 0
+
 	
 	method vidaTotal() = puntosDeVida + items.sum { 
 		item => item.puntosDeVidaQueOtorga(self)
@@ -15,9 +16,8 @@ class Campeon{
 	method ataqueTotal() = ataque + items.sum{
 		item => item.puntosDeAtaqueQueOtorga(self)
 	}
-	method puntosDeDanioTotal() = puntosDeDanio + items.sum{
-		item => item.puntosDeDanioQueOtorga(self)
-	}
+	method puntosDeDanioTotal() = puntosDeDanio + items.sum{item=> item.puntosDeDanioQueOtorga(self)}
+		
 	method bloqueoTotal() = bloqueo + items.sum{
 		item => item.bloqueosQueOtorga(self)
 	}	
@@ -44,21 +44,16 @@ class Campeon{
 	}	
 
 	method dineroPorAtaque(alguien){
-		if((alguien.cantMinions() - self.ataqueTotal()) <= 0){
-			return alguien.cantMinions()
-		}else{
-			return self.ataqueTotal()
-		}	
+		alguien.recompensa(self)
 	}
-	
 	method atacar(alguien){
-		dinero = dinero + self.dineroPorAtaque(alguien)
+		self.dineroPorAtaque(alguien)
 		if(bloqueo > 0){
-			alguien.cantMinions((alguien.cantMinions() - self.ataqueTotal()).max(0))
+			alguien.recibirAtaque(self)
 			bloqueo = (bloqueo - 1).max(0)
 		}else{
-			alguien.cantMinions((alguien.cantMinions() - self.ataqueTotal()).max(0))
 			alguien.defenderse(self)
+			alguien.recibirAtaque(self)
 		}
 	}
 	method activarHabilidad(item){
@@ -79,8 +74,44 @@ class OleadaMinion{
 			return plusDeAtaque
 		}
 	} 
+	method recibirAtaque(campeon){
+		self.cantMinions((self.cantMinions() - campeon.ataqueTotal()).max(0))
+	}
+	
 	method defenderse(campeon){
 		campeon.puntosDeDanio(campeon.puntosDeDanio() + self.ataqueTotal())
 	}
 	method estaMuerto() = cantMinions == 0
+	
+	method recompensa(campeon){
+		if((self.cantMinions() - campeon.ataqueTotal()) <= 0){
+			campeon.dinero(campeon.dinero() + self.cantMinions())
+		}else{
+			campeon.dinero(campeon.dinero() + campeon.ataqueTotal())
+		}	
+	}
 }
+
+class EjercitoDeMinions{
+	var property oleadas = []
+	
+	method todosMuertos() = oleadas.all{oleada=>oleada.estaMuerto()}
+	
+	method recibirAtaque(campeon){
+		oleadas.forEach{oleada=>oleada.recibirAtaque(campeon)}
+	}
+	method defenderse(campeon){
+		oleadas.forEach{oleada=>oleada.defenderse(campeon)}
+	}
+	method recompensa(campeon){
+		oleadas.forEach{oleada=>oleada.recompensa(campeon)}
+	}
+}
+
+
+
+
+
+
+
+
