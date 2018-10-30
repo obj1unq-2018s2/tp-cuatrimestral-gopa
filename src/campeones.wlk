@@ -8,6 +8,7 @@ class Campeon{
 	var property items = []	
 	var property bloqueo = 0
 	var property dinero = 0
+	var property puntosDeDanioQueCura = 0
 
 	
 	method vidaTotal() = puntosDeVida + items.sum { 
@@ -16,7 +17,9 @@ class Campeon{
 	method ataqueTotal() = ataque + items.sum{
 		item => item.puntosDeAtaqueQueOtorga(self)
 	}
-	method puntosDeDanioTotal() = puntosDeDanio + items.sum{item=> item.puntosDeDanioQueOtorga(self)}
+	
+	method puntosDeDanioTotal() = puntosDeDanio + items.sum{
+		item=> item.puntosDeDanioQueOtorga(self) - puntosDeDanioQueCura}
 		
 	method bloqueoTotal() = bloqueo + items.sum{
 		item => item.bloqueosQueOtorga(self)

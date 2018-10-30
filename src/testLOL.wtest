@@ -129,7 +129,7 @@ describe "test de liga de leyendas"{
 		campeon1.equiparItem(bastonDelVacio)
 		campeon1.activarHabilidad(bastonDelVacio)
 		assert.that( bastonDelVacio.materiales().get(1).uso() == 1 )
-		//assert.equals(0, campeon1.puntosDeDanio() )
+		assert.equals(0, campeon1.puntosDeDanio() )
 		assert.equals(500 ,campeon1.dinero())
 	}
 	
