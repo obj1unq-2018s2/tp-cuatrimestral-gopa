@@ -132,6 +132,7 @@ describe "test de liga de leyendas"{
 		//assert.equals(0, campeon1.puntosDeDanio() )
 		assert.equals(500 ,campeon1.dinero())
 	}
+	
 	test "ejercito de minions (test pedido)"{
 		campeon2.atacar(ejercito)
 		assert.that(campeon2.estaMuerto())
