@@ -62,10 +62,8 @@ class Campeon{
 		}
 	}
 	method activarHabilidad(item){
-		if(items.contains(item)){
 			item.habilidadActiva(true)
 			item.habilidadActivable(self)
-		}
 	}
 }
 

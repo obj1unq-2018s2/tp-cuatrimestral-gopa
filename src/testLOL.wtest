@@ -4,14 +4,18 @@ import items.*
 describe "test de liga de leyendas"{
 	
 	var anilloDeDoran=  new AnilloDeDoran()
+//	var anilloDeDoran2= new AnilloDeDoran()
 	
 	var tomoAmplificador = new TomoAmplificador()
+	
+//	var sombreroDeRabadon = new SombreroDeRabadon()
 	
 	var pocionDeVida = new PocionDeVida()
 	
 	var campeon1 = new Campeon(
 		puntosDeVida = 50,
-		ataque = 15 
+		ataque = 15,
+		dinero = 800
 	)
 	
 	const oleada1 = new OleadaMinion(
@@ -53,7 +57,7 @@ describe "test de liga de leyendas"{
 		campeon1.atacar(oleada1)
 		assert.equals(0,oleada1.cantMinions())
 		assert.equals(50, campeon1.puntosDeDanioTotal())
-		assert.equals(10,campeon1.dinero())
+		assert.equals(810,campeon1.dinero())
 		
 	}
 	test " campeon se desequipa el tomo amplificador"{
@@ -98,3 +102,7 @@ describe "test de liga de leyendas"{
 		
 	}
 }
+
+
+
+

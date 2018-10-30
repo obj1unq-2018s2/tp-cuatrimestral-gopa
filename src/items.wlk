@@ -22,22 +22,14 @@ class AnilloDeDoran {
 
 class TomoAmplificador{
 	
-	var puntosDeVida 
-	var ataque
 	var property habilidadActiva = false
 	var uso = 1
 	
 	method precio() = 500
 	
-	method puntosDeVidaQueOtorga(campeon){
-		puntosDeVida = 0.25 * campeon.puntosDeDanioTotal() 
-		return puntosDeVida
-	}
+	method puntosDeVidaQueOtorga(campeon) =	 0.25 * campeon.puntosDeDanioTotal() 
 	
-	method puntosDeAtaqueQueOtorga(campeon){
-		ataque= 0.05 * campeon.puntosDeDanioTotal()
-		return ataque
-	}
+	method puntosDeAtaqueQueOtorga(campeon) = 0.05 * campeon.puntosDeDanioTotal()
 	
 	method puntosDeDanioQueOtorga(campeon)=0
 	
@@ -49,7 +41,7 @@ class TomoAmplificador{
 	}
 	method habilidadActivable(campeon){
 	
-		if(habilidadActiva and uso >0 and campeon.dinero()>500){
+		if(habilidadActiva and uso >0 and campeon.dinero()<500){
 			campeon.dinero(500)
 			uso = 0
 		}
@@ -57,18 +49,13 @@ class TomoAmplificador{
 		
 }
 
-class SombreroDebadon inherits TomoAmplificador{
+class SombreroDeRabadon inherits TomoAmplificador{
 	
 	override method precio() = super() + 100
 	
-	override method puntosDeVidaQueOtorga(campeon){
-		super(campeon)  
-		return puntosDeVida + 5
-	}
+	override method puntosDeVidaQueOtorga(campeon) = super(campeon)  + 5
 	
-	override method puntosDeAtaqueQueOtorga(campeon){
-		return campeon.ataque() * 2
-	}
+	override method puntosDeAtaqueQueOtorga(campeon) = campeon.ataque() * 2
 	
 	override method puntosDeDanioQueOtorga(campeon)= 5
 	
@@ -82,7 +69,7 @@ class SombreroDebadon inherits TomoAmplificador{
 class PocionDeVida{
 	
 	var property habilidadActiva = false
-	var uso = 2
+	var property uso = 2
 	
 	method precio() = 50
 	
