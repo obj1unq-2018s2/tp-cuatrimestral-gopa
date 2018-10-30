@@ -7,6 +7,8 @@ describe "test de liga de leyendas"{
 	
 	var tomoAmplificador = new TomoAmplificador()
 	
+	var pocionDeVida = new PocionDeVida()
+	
 	var campeon1 = new Campeon(
 		puntosDeVida = 50,
 		ataque = 15 
@@ -51,6 +53,7 @@ describe "test de liga de leyendas"{
 		campeon1.atacar(oleada1)
 		assert.equals(0,oleada1.cantMinions())
 		assert.equals(50, campeon1.puntosDeDanioTotal())
+		assert.equals(10,campeon1.dinero())
 		
 	}
 	test " campeon se desequipa el tomo amplificador"{
@@ -70,6 +73,15 @@ describe "test de liga de leyendas"{
 		assert.equals(50,campeon1.vidaTotal())
 		assert.equals(20,campeon1.puntosDeDanioTotal())
 	}
+	test "campeon equipa pocion de vida"{
+		campeon1.puntosDeDanio(150)
+		campeon1.equiparItem(pocionDeVida)
+		campeon1.activarHabilidad(pocionDeVida)
+		campeon1.activarHabilidad(pocionDeVida)
+		campeon1.activarHabilidad(pocionDeVida)
+		assert.equals(50, campeon1.puntosDeDanioTotal())
+		
+	}
 	
 	test "campeon muere (test pedido)"{
 		
@@ -78,8 +90,10 @@ describe "test de liga de leyendas"{
 		campeon1.atacar(oleada1)
 		campeon1.atacar(oleada1)
 		campeon1.atacar(oleada1)
+		campeon1.desequiparItem(anilloDeDoran)
 		campeon1.desequiparItem(tomoAmplificador)
-		campeon1.desequiparItem(anilloDeDoran)		
+		campeon1.equiparItem(tomoAmplificador)
+		campeon1.desequiparItem(tomoAmplificador)	
 		assert.that( campeon1.estaMuerto() )
 		
 	}
