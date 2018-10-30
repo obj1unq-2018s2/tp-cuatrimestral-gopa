@@ -8,7 +8,7 @@ describe "test de liga de leyendas"{
 	
 	var tomoAmplificador = new TomoAmplificador()
 	
-//	var sombreroDeRabadon = new SombreroDeRabadon()
+	var sombreroDeRabadon = new SombreroDeRabadon()
 	
 	var pocionDeVida = new PocionDeVida()
 	
@@ -24,7 +24,7 @@ describe "test de liga de leyendas"{
 	)
 	
 	var bastonDelVacio= new BastonDelVacio(
-		materiales=[tomoAmplificador,pocionDeVida]
+		materiales=[pocionDeVida, sombreroDeRabadon]
 	)
 	
 	const oleada1 = new OleadaMinion(
@@ -124,13 +124,12 @@ describe "test de liga de leyendas"{
 		
 	}
 
-	test " baston del vacio "{
+	test " baston del vacio (test pedido)"{
 		campeon1.comprar(anilloDeDoran)
 		campeon1.comprar(anilloDeDoran2)
 		assert.equals(10, campeon1.puntosDeDanioTotal() )
 		campeon1.equiparItem(bastonDelVacio)
 		campeon1.activarHabilidad(bastonDelVacio)
-		assert.that( bastonDelVacio.materiales().get(1).uso() == 1 )
 		assert.equals(0, campeon1.puntosDeDanio() )
 		assert.equals(500 ,campeon1.dinero())
 	}

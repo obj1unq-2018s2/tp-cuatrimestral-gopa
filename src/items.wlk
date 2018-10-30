@@ -62,8 +62,6 @@ class SombreroDeRabadon inherits TomoAmplificador{
 	override method bloqueosQueOtorga(campeon) = 0
 	
 	override method efectoNegativo(campeon){}
-	
-	override method habilidadActivable(campeon){}
 }
 
 class PocionDeVida{
@@ -84,11 +82,10 @@ class PocionDeVida{
 	method efectoNegativo(campeon){}
 	
 	method habilidadActivable(campeon){
-//REVISAR XQUE NO FUNCIONA
 		if(habilidadActiva and uso == 2){
 			campeon.puntosDeDanioQueCura(50)
 			uso -= 1
-		}else{if(habilidadActiva and uso ==1)
+		}else{if(habilidadActiva and uso == 1)
 			campeon.puntosDeDanioQueCura(100)
 			uso -= 1
 		}
