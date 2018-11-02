@@ -59,35 +59,37 @@ describe "test de liga de leyendas"{
 		assert.equals(30, campeon1.ataqueTotal() )
 	
 	}
-	test "equipa anillo de doran y tomo amplificador"{
-		campeon1.equiparItem(anilloDeDoran)
+	test "equipa  tomo amplificador"{
+		//campeon1.equiparItem(anilloDeDoran)
 		campeon1.equiparItem(tomoAmplificador)
-		assert.equals([anilloDeDoran, tomoAmplificador],campeon1.items())
-		assert.equals(5, campeon1.puntosDeDanioTotal())
-		assert.equals(111.25, campeon1.vidaTotal())
-		assert.equals(30.25, campeon1.ataqueTotal())
-		assert.equals(2, campeon1.bloqueoTotal())
+		assert.equals([tomoAmplificador],campeon1.items())
+		assert.equals(0, campeon1.puntosDeDanioTotal())
+		assert.equals(50, campeon1.vidaTotal())
+		assert.equals(15, campeon1.ataqueTotal())
+		assert.equals(2, campeon1.bloqueo())
 	
 	}
 	test "campeon ataca a una oleada de minions"{
-		campeon1.bloqueo(1)
-		campeon1.atacar(oleada1)
-		assert.equals(0, campeon1.bloqueo())
-		campeon1.atacar(oleada1)
+		campeon1.equiparItem(tomoAmplificador)
+		assert.equals(2, campeon1.bloqueo())
 		campeon1.atacar(oleada1)
 		assert.equals(0,oleada1.cantMinions())
-		assert.equals(50, campeon1.puntosDeDanioTotal())
+		assert.equals(1, campeon1.bloqueo())
+		assert.equals(0, campeon1.puntosDeDanioTotal())
 		assert.equals(810,campeon1.dinero())
-		
 	}
+	
+		
 	test " campeon se desequipa el tomo amplificador"{
 		campeon1.equiparItem(anilloDeDoran)
 		campeon1.equiparItem(tomoAmplificador)
+		assert.equals(2, campeon1.bloqueo())
 		campeon1.desequiparItem(tomoAmplificador)
 		assert.equals([anilloDeDoran], campeon1.items())
-		assert.equals(1, campeon1.bloqueo())
-		assert.equals(35,campeon1.puntosDeDanioTotal())
-	}
+		assert.equals(3, campeon1.bloqueo())
+		assert.equals(5+30, campeon1.puntosDeDanioTotal())
+		}
+	
 	test "campeon se desequipa el tomo amplificador y el anillo de doran"{
 		campeon1.equiparItem(anilloDeDoran)
 		campeon1.equiparItem(tomoAmplificador)
@@ -103,10 +105,12 @@ describe "test de liga de leyendas"{
 		campeon1.activarHabilidad(pocionDeVida)
 		assert.equals(100,campeon1.puntosDeDanioTotal())
 		campeon1.activarHabilidad(pocionDeVida)
-		
+		assert.equals(50, campeon1.puntosDeDanioTotal())
+		//hasta aca da verde, despues da azul xque se vuelve a activar la habilidad cuando no deberia ser asi
+		assert.equals(0, campeon1.items().first().uso() )
 		campeon1.activarHabilidad(pocionDeVida)
 		assert.equals(50, campeon1.puntosDeDanioTotal())
-		
+	
 	}
 	
 	test "campeon muere (test pedido)"{

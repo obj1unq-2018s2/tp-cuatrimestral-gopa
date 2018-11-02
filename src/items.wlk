@@ -12,7 +12,7 @@ class AnilloDeDoran {
 	
 	method puntosDeDanioQueOtorga(campeon) = 5
 	
-	method bloqueosQueOtorga(campeon) = 0
+	method efectoPositivo(campeon){}
 	
 	method efectoNegativo(campeon){
 		campeon.puntosDeDanio(campeon.puntosDeDanio() - 10)
@@ -33,10 +33,12 @@ class TomoAmplificador{
 	
 	method puntosDeDanioQueOtorga(campeon)=0
 	
-	method bloqueosQueOtorga(campeon) = 2
+	method efectoPositivo(campeon){
+		campeon.agregarBloqueos(2)
+	}
 	
 	method efectoNegativo(campeon){
-		campeon.bloqueo( campeon.bloqueo() + 1 )
+		campeon.agregarBloqueos(1)
 		campeon.puntosDeDanio(campeon.puntosDeDanio() + 30)
 	}
 	method habilidadActivable(campeon){
@@ -59,8 +61,6 @@ class SombreroDeRabadon inherits TomoAmplificador{
 	
 	override method puntosDeDanioQueOtorga(campeon)= 5
 	
-	override method bloqueosQueOtorga(campeon) = 0
-	
 	override method efectoNegativo(campeon){}
 }
 
@@ -72,22 +72,18 @@ class PocionDeVida{
 	method precio() = 50
 	
 	method puntosDeVidaQueOtorga(campeon) = 0 	
-	
 	method puntosDeAtaqueQueOtorga(campeon) = 0
-	
 	method puntosDeDanioQueOtorga(campeon) = 0
-	
-	method bloqueosQueOtorga(campeon) = 0
-	
+	method efectoPositivo(campeon){}
 	method efectoNegativo(campeon){}
 	
 	method habilidadActivable(campeon){
-		if(habilidadActiva and uso == 2){
-			campeon.puntosDeDanioQueCura(50)
+		if(habilidadActiva and uso > 0){
+			campeon.danio(50)
 			uso -= 1
-		}else{if(habilidadActiva and uso == 1)
-			campeon.puntosDeDanioQueCura(100)
-			uso -= 1
+		}
+		else{
+			campeon.danio(0)
 		}
 	}
 }
@@ -114,6 +110,7 @@ class BastonDelVacio{
 	
 	method puntosDeDanioQueOtorga(campeon) = 0
 	method bloqueosQueOtorga(campeon) = 0
+	method efectoPositivo(campeon){}
 	method efectoNegativo(campeon){}
 	
 	method habilidadActivable(campeon){

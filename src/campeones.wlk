@@ -6,9 +6,13 @@ class Campeon{
 	const property ataque
 	var property puntosDeDanio = 0
 	var property items = []	
-	var property bloqueo = 0
+	
+	//REVISAR
+	var  bloqueo = 0
+	
+	
 	var property dinero = 0
-	var property puntosDeDanioQueCura = 0
+	
 
 	
 	method vidaTotal() = puntosDeVida + items.sum { 
@@ -19,15 +23,32 @@ class Campeon{
 	}
 	
 	method puntosDeDanioTotal() = puntosDeDanio + items.sum{
-		item=> item.puntosDeDanioQueOtorga(self) - puntosDeDanioQueCura}
-		
-	method bloqueoTotal() = bloqueo + items.sum{
-		item => item.bloqueosQueOtorga(self)
-	}	
+		item=> item.puntosDeDanioQueOtorga(self) }
+	
+	//nuevo metodo. Fijate lo que hace la pocion de vida
+	//este metodo solo se usa cuando se activa la habilidad del objeto pocion de vida
+	method danio(pocion){
+		puntosDeDanio = (self.puntosDeDanioTotal() - pocion).max(0)
+	}
+	
+	
+	//REVISAR	
+	//para mi funciona. despues decime que onda
+	//saque metodo bloquesQueOrtoga()  
+	method bloqueo()= bloqueo
+	
+	method agregarBloqueos(numero){
+		bloqueo += numero
+	}
+	
+	
+	
 	method estaMuerto() = self.vidaTotal() <= self.puntosDeDanioTotal()
 	
 	method equiparItem(item){
 		items.add(item)
+		// aca agregue el metodo efecto positivo al item
+		item.efectoPositivo(self)
 	}
 	method desequiparItem(item){
 		items.remove(item)
@@ -74,7 +95,7 @@ class OleadaMinion{
 		if(cantMinions > 0){
 			return plusDeAtaque + cantMinions
 		}else{
-			return plusDeAtaque
+			return 0
 		}
 	} 
 	method recibirAtaque(campeon){
