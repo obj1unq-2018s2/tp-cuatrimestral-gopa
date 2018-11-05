@@ -10,11 +10,11 @@ class AnilloDeDoran {
 	
 	method puntosDeAtaqueQueOtorga(campeon) = 15
 	
-	method puntosDeDanioQueOtorga(campeon) = 5
+	method efectoAlEquipar(campeon){
+		campeon.puntosDeDanio(campeon.puntosDeDanio() + 5)
+	}
 	
-	method efectoPositivo(campeon){}
-	
-	method efectoNegativo(campeon){
+	method efectoAlDesequipar(campeon){
 		campeon.puntosDeDanio(campeon.puntosDeDanio() - 10)
 	}
 	method habilidadActivable(campeon){}
@@ -27,22 +27,19 @@ class TomoAmplificador{
 	
 	method precio() = 500
 	
-	method puntosDeVidaQueOtorga(campeon) =	 0.25 * campeon.puntosDeDanioTotal() 
+	method puntosDeVidaQueOtorga(campeon) =	 0.25 * campeon.puntosDeDanio()
 	
-	method puntosDeAtaqueQueOtorga(campeon) = 0.05 * campeon.puntosDeDanioTotal()
+	method puntosDeAtaqueQueOtorga(campeon) = 0.05 * campeon.puntosDeDanio()
 	
-	method puntosDeDanioQueOtorga(campeon)=0
-	
-	method efectoPositivo(campeon){
+	method efectoAlEquipar(campeon){
 		campeon.agregarBloqueos(2)
 	}
 	
-	method efectoNegativo(campeon){
+	method efectoAlDesequipar(campeon){
 		campeon.agregarBloqueos(1)
 		campeon.puntosDeDanio(campeon.puntosDeDanio() + 30)
 	}
 	method habilidadActivable(campeon){
-	
 		if(habilidadActiva and uso >0 and campeon.dinero()<500){
 			campeon.dinero(500)
 			uso = 0
@@ -59,9 +56,11 @@ class SombreroDeRabadon inherits TomoAmplificador{
 	
 	override method puntosDeAtaqueQueOtorga(campeon) = campeon.ataque() * 2
 	
-	override method puntosDeDanioQueOtorga(campeon)= 5
-	
-	override method efectoNegativo(campeon){}
+	override method efectoAlEquipar(campeon){ 
+		super(campeon)
+		campeon.puntosDeDanio(campeon.puntosDeDanio() + 5)
+	}
+	override method efectoAlDesequipar(campeon){}
 }
 
 class PocionDeVida{
@@ -73,17 +72,13 @@ class PocionDeVida{
 	
 	method puntosDeVidaQueOtorga(campeon) = 0 	
 	method puntosDeAtaqueQueOtorga(campeon) = 0
-	method puntosDeDanioQueOtorga(campeon) = 0
-	method efectoPositivo(campeon){}
-	method efectoNegativo(campeon){}
+	method efectoAlEquipar(campeon){}
+	method efectoAlDesequipar(campeon){}
 	
 	method habilidadActivable(campeon){
 		if(habilidadActiva and uso > 0){
-			campeon.danio(50)
+			campeon.puntosDeDanio((campeon.puntosDeDanio() - 50).max(0))
 			uso -= 1
-		}
-		else{
-			campeon.danio(0)
 		}
 	}
 }
@@ -110,8 +105,8 @@ class BastonDelVacio{
 	
 	method puntosDeDanioQueOtorga(campeon) = 0
 	method bloqueosQueOtorga(campeon) = 0
-	method efectoPositivo(campeon){}
-	method efectoNegativo(campeon){}
+	method efectoAlEquipar(campeon){}
+	method efectoalDesequipar(campeon){}
 	
 	method habilidadActivable(campeon){
 		if( habilidadActiva ){
