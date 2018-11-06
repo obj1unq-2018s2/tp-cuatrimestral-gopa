@@ -14,9 +14,7 @@ class Campeon{
 	method ataqueTotal() = ataque + items.sum{
 		item => item.puntosDeAtaqueQueOtorga(self)
 	}	
-	method agregarBloqueos(numero){
-		bloqueo += numero
-	}		
+	
 	method estaMuerto() = self.vidaTotal() <= puntosDeDanio
 		
 	method equiparItem(item){

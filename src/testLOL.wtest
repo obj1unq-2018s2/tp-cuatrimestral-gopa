@@ -60,7 +60,7 @@ describe "test de liga de leyendas"{
 		campeon1.desequiparItem(tomoAmplificador)
 		assert.equals([anilloDeDoran], campeon1.items())
 		assert.equals(3, campeon1.bloqueo())
-		assert.equals(5+30, campeon1.puntosDeDanio())
+		assert.equals(35, campeon1.puntosDeDanio())
 		}
 	
 	test "campeon se desequipa el tomo amplificador y el anillo de doran"{

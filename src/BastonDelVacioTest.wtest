@@ -5,7 +5,6 @@ describe "baston del vacio test"{
 	
 	var anilloDeDoran=  new AnilloDeDoran()
 	var anilloDeDoran2= new AnilloDeDoran()
-	var tomoAmplificador = new TomoAmplificador()
 	var sombreroDeRabadon = new SombreroDeRabadon()
 	var pocionDeVida = new PocionDeVida()
 	var campeon1 = new Campeon(

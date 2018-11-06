@@ -32,11 +32,11 @@ class TomoAmplificador{
 	method puntosDeAtaqueQueOtorga(campeon) = 0.05 * campeon.puntosDeDanio()
 	
 	method efectoAlEquipar(campeon){
-		campeon.agregarBloqueos(2)
+		campeon.bloqueo(campeon.bloqueo() + 2)
 	}
 	
 	method efectoAlDesequipar(campeon){
-		campeon.agregarBloqueos(1)
+		campeon.bloqueo(campeon.bloqueo() + 1)
 		campeon.puntosDeDanio(campeon.puntosDeDanio() + 30)
 	}
 	method habilidadActivable(campeon){
@@ -98,7 +98,7 @@ class BastonDelVacio{
 		return materiales.sum({ material=> material.puntosDeVidaQueOtorga(campeon) / 2 })
 	}
 	method puntosDeAtaqueQueOtorga(campeon){
-		return materiales.map({ material=> material.puntosDeAtaqueQueOtorga(campeon) }).sum()
+		return materiales.sum({ material=> material.puntosDeAtaqueQueOtorga(campeon) })
 	} 
 	
 	method efectoAlEquipar(campeon){}
