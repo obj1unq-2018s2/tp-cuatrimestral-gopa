@@ -4,13 +4,10 @@ class Campeon{
 	
 	const property puntosDeVida
 	const property ataque
+	
 	var property puntosDeDanio = 0
 	var property items = []	
-	
-	//REVISAR
 	var property bloqueo = 0
-	
-	
 	var property dinero = 0
 	
 

@@ -1,0 +1,32 @@
+import campeones.*
+import items.*
+
+describe "baston del vacio test"{
+	
+	var anilloDeDoran=  new AnilloDeDoran()
+	var anilloDeDoran2= new AnilloDeDoran()
+	var tomoAmplificador = new TomoAmplificador()
+	var sombreroDeRabadon = new SombreroDeRabadon()
+	var pocionDeVida = new PocionDeVida()
+	var campeon1 = new Campeon(
+		puntosDeVida = 50,
+		ataque = 15,
+		dinero = 800
+	)
+	var bastonDelVacio= new BastonDelVacio(
+		materiales=[pocionDeVida, sombreroDeRabadon]
+	)
+
+
+
+test " baston del vacio (test pedido)"{
+		campeon1.comprar(anilloDeDoran)
+		campeon1.comprar(anilloDeDoran2)
+		assert.equals(10, campeon1.puntosDeDanio() )
+		campeon1.equiparItem(bastonDelVacio)
+		campeon1.activarHabilidad(bastonDelVacio)
+		assert.equals(0, campeon1.puntosDeDanio() )
+		assert.equals(500 ,campeon1.dinero())
+	}
+
+}

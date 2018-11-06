@@ -86,9 +86,8 @@ class PocionDeVida{
 class BastonDelVacio{
 	
 	var property habilidadActiva = false
-	
 	var property materiales=[]
-	
+
 	method agregarMaterial(material){
 		materiales.add(material)
 	}
@@ -98,13 +97,10 @@ class BastonDelVacio{
 	method puntosDeVidaQueOtorga(campeon){
 		return materiales.sum({ material=> material.puntosDeVidaQueOtorga(campeon) / 2 })
 	}
-	
 	method puntosDeAtaqueQueOtorga(campeon){
 		return materiales.map({ material=> material.puntosDeAtaqueQueOtorga(campeon) }).sum()
 	} 
 	
-	method puntosDeDanioQueOtorga(campeon) = 0
-	method bloqueosQueOtorga(campeon) = 0
 	method efectoAlEquipar(campeon){}
 	method efectoalDesequipar(campeon){}
 	
