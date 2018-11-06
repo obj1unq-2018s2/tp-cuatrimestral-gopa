@@ -1,0 +1,29 @@
+import campeones.*
+import items.*
+
+describe "test Ejercito de minions"{
+	
+	var campeon2 = new Campeon(
+		puntosDeVida = 50,
+		ataque = 20,
+		dinero = 300
+	)
+	const oleada2 = new OleadaMinion(
+		plusDeAtaque = 5,
+		cantMinions = 20
+	)
+	const oleada3 = new OleadaMinion(
+		plusDeAtaque = 15,
+		cantMinions = 10
+	)
+	const ejercito = new EjercitoDeMinions(
+		oleadas = [oleada2, oleada3]
+	)
+
+	test "ejercito de minions (test pedido)"{
+		campeon2.atacar(ejercito)
+		assert.that(campeon2.estaMuerto())
+		assert.that(ejercito.todosMuertos())
+		assert.equals(330, campeon2.dinero())
+	}
+}

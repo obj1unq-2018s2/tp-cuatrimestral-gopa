@@ -5,7 +5,6 @@ describe "test de liga de leyendas"{
 	
 	var anilloDeDoran=  new AnilloDeDoran()
 	var tomoAmplificador = new TomoAmplificador()
-	var sombreroDeRabadon = new SombreroDeRabadon()
 	var pocionDeVida = new PocionDeVida()
 	
 	var campeon1 = new Campeon(
@@ -13,29 +12,12 @@ describe "test de liga de leyendas"{
 		ataque = 15,
 		dinero = 800
 	)
-	var campeon2 = new Campeon(
-		puntosDeVida = 50,
-		ataque = 20,
-		dinero = 300
-	)
-	
-	
+		
 	const oleada1 = new OleadaMinion(
 		plusDeAtaque = 25,
 		cantMinions = 10
 	)
-	const oleada2 = new OleadaMinion(
-		plusDeAtaque = 5,
-		cantMinions = 20
-	)
-	const oleada3 = new OleadaMinion(
-		plusDeAtaque = 15,
-		cantMinions = 10
-	)
-	const ejercito = new EjercitoDeMinions(
-		oleadas = [oleada2, oleada3]
-	)
-	
+
 	test "estado inicial del campeón"{
 		assert.equals(50, campeon1.vidaTotal())
 		assert.equals(15, campeon1.ataqueTotal() )
@@ -70,7 +52,6 @@ describe "test de liga de leyendas"{
 		assert.equals(0, campeon1.puntosDeDanio())
 		assert.equals(810,campeon1.dinero())
 	}
-	
 		
 	test " campeon se desequipa el tomo amplificador"{
 		campeon1.equiparItem(anilloDeDoran)
@@ -105,7 +86,6 @@ describe "test de liga de leyendas"{
 	}
 	
 	test "campeon muere (test pedido)"{
-		
 		campeon1.equiparItem(anilloDeDoran)
 		campeon1.equiparItem(tomoAmplificador)
 		campeon1.atacar(oleada1)
@@ -118,16 +98,6 @@ describe "test de liga de leyendas"{
 		assert.that( campeon1.estaMuerto() )
 		
 	}
-
-	
-	test "ejercito de minions (test pedido)"{
-		campeon2.atacar(ejercito)
-		assert.that(campeon2.estaMuerto())
-		assert.that(ejercito.todosMuertos())
-		assert.equals(330, campeon2.dinero())
-	}
 }
-
-
 
 

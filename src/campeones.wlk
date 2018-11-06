@@ -1,17 +1,13 @@
 import items.*
 
 class Campeon{
-	
 	const property puntosDeVida
 	const property ataque
-	
 	var property puntosDeDanio = 0
 	var property items = []	
 	var property bloqueo = 0
 	var property dinero = 0
-	
 
-	
 	method vidaTotal() = puntosDeVida + items.sum { 
 		item => item.puntosDeVidaQueOtorga(self)
 	}
@@ -64,7 +60,6 @@ class Campeon{
 }
 
 class OleadaMinion{
-	
 	var property plusDeAtaque
 	var property cantMinions	
 	
@@ -108,11 +103,3 @@ class EjercitoDeMinions{
 		oleadas.forEach{oleada=>oleada.recompensa(campeon)}
 	}
 }
-
-
-
-
-
-
-
-
