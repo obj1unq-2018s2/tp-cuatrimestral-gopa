@@ -16,9 +16,6 @@ class OleadaMinion{
 		cantMinions -= self.cantMuertesFrenteAAtaqueDe(campeon)
 	}
 	
-	method defenderse(campeon){
-		campeon.puntosDeDanio(campeon.puntosDeDanio() + self.ataqueTotal())
-	}
 	method estaMuerto() = cantMinions == 0
 	
 	method cantMuertesFrenteAAtaqueDe(campeon){
@@ -37,10 +34,12 @@ class EjercitoDeMinions{
 	method recibirAtaque(campeon){
 		oleadas.forEach{oleada=>oleada.recibirAtaque(campeon)}
 	}
-	method defenderse(campeon){
-		oleadas.forEach{oleada=>oleada.defenderse(campeon)}
+	
+	method ataqueTotal(){
+		return oleadas.sum({ oleada=>oleada.ataqueTotal() })
 	}
-	method recompensa(campeon){
-		oleadas.forEach{oleada=>oleada.recompensa(campeon)}
+	
+	method cantMuertesFrenteAAtaqueDe(campeon){
+		return oleadas.sum({oleada=> oleada.cantMuertesFrenteAAtaqueDe(campeon) })
 	}
 }

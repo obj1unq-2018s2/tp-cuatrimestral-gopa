@@ -95,7 +95,8 @@ describe "test de liga de leyendas"{
 		campeon1.desequiparItem(anilloDeDoran)
 		campeon1.desequiparItem(tomoAmplificador)
 		campeon1.equiparItem(tomoAmplificador)
-		campeon1.desequiparItem(tomoAmplificador)	
+		campeon1.desequiparItem(tomoAmplificador)
+		assert.equals( 810, campeon1.dinero())
 		assert.that( campeon1.estaMuerto() )
 		
 	}
