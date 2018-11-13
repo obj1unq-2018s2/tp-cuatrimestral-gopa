@@ -15,7 +15,7 @@ class AnilloDeDoran {
 	}
 	
 	method efectoAlDesequipar(campeon){
-		campeon.puntosDeDanio(campeon.puntosDeDanio() - 10)
+		campeon.puntosDeDanio((campeon.puntosDeDanio() - 10).max(0))
 	}
 	method habilidadActivable(campeon){}
 }
@@ -92,7 +92,7 @@ class BastonDelVacio{
 		materiales.add(material)
 	}
 	
-	method precio()=0 
+	method precio() = 0 
 	
 	method puntosDeVidaQueOtorga(campeon){
 		return materiales.sum({ material=> material.puntosDeVidaQueOtorga(campeon) / 2 })

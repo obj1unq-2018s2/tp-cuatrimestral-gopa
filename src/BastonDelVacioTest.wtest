@@ -3,7 +3,7 @@ import items.*
 
 describe "baston del vacio test"{
 	
-	var anilloDeDoran=  new AnilloDeDoran()
+	var anilloDeDoran1=  new AnilloDeDoran()
 	var anilloDeDoran2= new AnilloDeDoran()
 	var sombreroDeRabadon = new SombreroDeRabadon()
 	var pocionDeVida = new PocionDeVida()
@@ -19,7 +19,7 @@ describe "baston del vacio test"{
 
 
 test " baston del vacio (test pedido)"{
-		campeon1.comprar(anilloDeDoran)
+		campeon1.comprar(anilloDeDoran1)
 		campeon1.comprar(anilloDeDoran2)
 		assert.equals(10, campeon1.puntosDeDanio() )
 		campeon1.equiparItem(bastonDelVacio)

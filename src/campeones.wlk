@@ -3,6 +3,7 @@ import items.*
 class Campeon{
 	const property puntosDeVida
 	const property ataque
+	
 	var property puntosDeDanio = 0
 	var property items = []	
 	var property bloqueo = 0
@@ -28,7 +29,7 @@ class Campeon{
 	
 	method comprar(item){
 		if(dinero >= item.precio()){
-			dinero = (dinero - item.precio()).max(0)
+			dinero = (dinero - item.precio())
 			self.equiparItem(item)
 		}
 	}
@@ -62,14 +63,14 @@ class OleadaMinion{
 	var property cantMinions	
 	
 	method ataqueTotal(){
-		if(cantMinions > 0){
+		if(not self.estaMuerto()){
 			return plusDeAtaque + cantMinions
 		}else{
 			return 0
 		}
 	} 
 	method recibirAtaque(campeon){
-		self.cantMinions((self.cantMinions() - campeon.ataqueTotal()).max(0))
+		cantMinions = (cantMinions - campeon.ataqueTotal()).max(0)
 	}
 	
 	method defenderse(campeon){
@@ -78,8 +79,8 @@ class OleadaMinion{
 	method estaMuerto() = cantMinions == 0
 	
 	method recompensa(campeon){
-		if((self.cantMinions() - campeon.ataqueTotal()) <= 0){
-			campeon.dinero(campeon.dinero() + self.cantMinions())
+		if((cantMinions - campeon.ataqueTotal()) <= 0){
+			campeon.dinero(campeon.dinero() + cantMinions )
 		}else{
 			campeon.dinero(campeon.dinero() + campeon.ataqueTotal())
 		}	
