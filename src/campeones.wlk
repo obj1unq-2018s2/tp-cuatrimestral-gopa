@@ -28,10 +28,13 @@ class Campeon{
 	}
 	
 	method comprar(item){
-		if(dinero >= item.precio()){
-			dinero = (dinero - item.precio())
-			self.equiparItem(item)
+		if(dinero < item.precio()){
+			// TODO tirar excepción acá
 		}
+		
+		dinero = (dinero - item.precio())
+		self.equiparItem(item)
+		
 	}
 	
 	method vender(item){
@@ -40,20 +43,21 @@ class Campeon{
 	}	
 
 	method dineroPorAtaque(alguien){
-		alguien.recompensa(self)
+		dinero += alguien.cantMuertesFrenteAAtaqueDe(self)
 	}
+
 	method atacar(alguien){
 		self.dineroPorAtaque(alguien)
-		if(bloqueo > 0){
-			alguien.recibirAtaque(self)
-			bloqueo = (bloqueo - 1).max(0)
-		}else{
+		if(bloqueo > 0) {
+			bloqueo -= 1
+		} else {
 			alguien.defenderse(self)
-			alguien.recibirAtaque(self)
 		}
+		alguien.recibirAtaque(self)
 	}
+
 	method activarHabilidad(item){
-			item.habilidadActiva(true)
-			item.habilidadActivable(self)
+		item.habilidadActiva(true)
+		item.habilidadActivable(self)
 	}
 }

@@ -11,8 +11,9 @@ class OleadaMinion{
 			return 0
 		}
 	} 
+
 	method recibirAtaque(campeon){
-		cantMinions = (cantMinions - campeon.ataqueTotal()).max(0)
+		cantMinions -= self.cantMuertesFrenteAAtaqueDe(campeon)
 	}
 	
 	method defenderse(campeon){
@@ -20,12 +21,8 @@ class OleadaMinion{
 	}
 	method estaMuerto() = cantMinions == 0
 	
-	method recompensa(campeon){
-		if((cantMinions - campeon.ataqueTotal()) <= 0){
-			campeon.dinero(campeon.dinero() + cantMinions )
-		}else{
-			campeon.dinero(campeon.dinero() + campeon.ataqueTotal())
-		}	
+	method cantMuertesFrenteAAtaqueDe(campeon){
+		return campeon.ataqueTotal().min(cantMinions)
 	}
 }
 
