@@ -1,5 +1,6 @@
 import campeones.*
 import items.*
+import minions.*
 
 describe "test Ejercito de minions"{
 	
